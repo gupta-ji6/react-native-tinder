@@ -12,6 +12,8 @@ target 'TinderCards' do
     :hermes_enabled => false
   )
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'TinderCardsTests' do
     inherit! :complete
     # Pods for testing
