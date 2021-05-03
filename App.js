@@ -97,13 +97,13 @@ function App() {
   };
 
   const likeOpacity = position.x.interpolate({
-    inputRange: [-screenWidth / 2, 0, screenWidth / 2],
+    inputRange: [-screenWidth / 4, 0, screenWidth / 4],
     outputRange: [0, 0, 1],
     extrapolate: 'clamp',
   });
 
   const nopeOpacity = position.x.interpolate({
-    inputRange: [-screenWidth / 2, 0, screenWidth / 2],
+    inputRange: [-screenWidth / 4, 0, screenWidth / 4],
     outputRange: [1, 0, 0],
     extrapolate: 'clamp',
   });
