@@ -9,6 +9,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import clamp from 'clamp';
 
 // decide a threshold after which card will be swiped
@@ -36,25 +37,33 @@ const TinderCards = () => {
       image: Bobo,
       id: 1,
       name: 'Bobo',
-      animal: 'Cat',
+      age: '18',
+      interests: ['Travel', 'Photography', 'Movies', 'StandUp Comendy', 'Dogs'],
+      bio: 'Not here for hookups',
     },
     {
       image: Dolly,
       id: 2,
       name: 'Dolly',
-      animal: 'Dog',
+      age: '18',
+      interests: ['Travel', 'Photography', 'Movies', 'StandUp Comendy', 'Dogs'],
+      bio: 'Not here for hookups',
     },
     {
       image: Giraffe,
       id: 3,
       name: 'Milo',
-      animal: 'Giraffe',
+      age: '18',
+      interests: ['Travel', 'Photography', 'Movies', 'StandUp Comendy', 'Dogs'],
+      bio: 'Not here for hookups',
     },
     {
       image: Goat,
       id: 4,
       name: 'Ollie',
-      animal: 'Goat',
+      age: '18',
+      interests: ['Travel', 'Photography', 'Movies', 'StandUp Comendy', 'Dogs'],
+      bio: 'Not here for hookups',
     },
   ]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -209,11 +218,23 @@ const TinderCards = () => {
                 <>
                   <Animated.View
                     style={[styles.likeContainer, {opacity: likeOpacity}]}>
-                    <Text style={[styles.likeText]}>LIKE</Text>
+                    <LinearGradient
+                      start={{x: 0, y: 0}}
+                      end={{x: 1, y: 0}}
+                      colors={['#78CDA2', '#3AD27C']}
+                      style={{borderRadius: 5}}>
+                      <Text style={[styles.likeText]}>LIKE</Text>
+                    </LinearGradient>
                   </Animated.View>
                   <Animated.View
                     style={[styles.nopeContainer, {opacity: nopeOpacity}]}>
-                    <Text style={[styles.nopeText]}>NOPE</Text>
+                    <LinearGradient
+                      start={{x: 0, y: 0}}
+                      end={{x: 1, y: 0}}
+                      colors={['#F4506D', '#EA5675']}
+                      style={{borderRadius: 5}}>
+                      <Text style={[styles.nopeText]}>NOPE</Text>
+                    </LinearGradient>
                   </Animated.View>
                 </>
               )}
@@ -226,10 +247,29 @@ const TinderCards = () => {
                 />
               </View>
 
-              <View style={styles.textContainer}>
-                <Text style={styles.nameText}>{item.name}</Text>
-                <Text style={styles.animalText}>{item.animal}</Text>
-              </View>
+              <LinearGradient
+                colors={['#00000000', '#1A202C']}
+                style={styles.textContainer}>
+                <View style={styles.nameContainer}>
+                  <Text style={styles.name}>{item.name}</Text>
+                  <Text style={styles.age}>{item.age}</Text>
+                </View>
+                <View style={styles.interestContainer}>
+                  {item.interests.map((interest, index) => (
+                    <LinearGradient
+                      key={index}
+                      start={{x: 0, y: 0}}
+                      end={{x: 1, y: 0}}
+                      colors={['#FD297B', '#FF5864']}
+                      style={styles.interest}>
+                      <Text key={index} style={styles.interestName}>
+                        {interest}
+                      </Text>
+                    </LinearGradient>
+                  ))}
+                </View>
+                <Text style={styles.bio}>{item.bio}</Text>
+              </LinearGradient>
             </Animated.View>
           );
         })}
@@ -244,11 +284,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: '#E2E8F0',
   },
   card: {
-    width: '100%',
-    height: 0.85 * screenHeight,
+    width: screenWidth - 10,
+    height: 0.86 * screenHeight,
     backgroundColor: '#f4f4f4',
     position: 'absolute',
     borderRadius: 10,
@@ -304,39 +344,68 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   likeText: {
-    borderWidth: 2,
-    borderRadius: 5,
-    borderColor: 'green',
-    color: 'green',
+    color: '#F7FAFC',
     fontSize: 32,
     fontWeight: '800',
     padding: 10,
   },
   nopeText: {
-    borderWidth: 2,
     borderRadius: 5,
-    borderColor: 'red',
-    color: 'red',
+    color: '#F7FAFC',
     fontSize: 32,
     fontWeight: '800',
     padding: 10,
   },
   textContainer: {
-    padding: 10,
-    alignItems: 'center',
-    backgroundColor: 'rgba(256,256,256,0.78)',
+    maxHeight: 0.4 * screenHeight,
+    paddingTop: 0.15 * screenHeight,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+    alignItems: 'flex-start',
     position: 'absolute',
     bottom: 0,
     width: '100%',
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
-  nameText: {
-    fontSize: 16,
+  nameContainer: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'flex-start',
+    paddingBottom: 4,
   },
-  animalText: {
-    fontSize: 14,
-    color: '#404040',
+  name: {
+    fontSize: 30,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlignVertical: 'bottom',
+  },
+  age: {
+    fontSize: 24,
+    color: 'white',
+    fontWeight: 'bold',
+    paddingLeft: 10,
+  },
+  interestContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingVertical: 4,
+  },
+  interest: {
+    borderRadius: 30,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    marginRight: 10,
+    marginBottom: 10,
+  },
+  interestName: {
+    color: '#F7FAFC',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  bio: {
+    fontSize: 16,
+    color: '#f4f4f4',
     paddingTop: 5,
   },
 });
