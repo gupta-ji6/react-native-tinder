@@ -8,12 +8,14 @@
 
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import Footer from './src/components/Footer';
 import TinderCards from './src/components/TinderCards';
 
 function App() {
   return (
     <View style={styles.container}>
       <TinderCards />
+      <Footer />
     </View>
   );
 }
@@ -21,6 +23,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
 });
 

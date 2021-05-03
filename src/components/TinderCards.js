@@ -242,6 +242,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.9,
     alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
     backgroundColor: 'white',
   },
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     ...Platform.select({
       android: {
-        elevation: 1,
+        elevation: 5,
       },
       ios: {
         shadowColor: '#000',
