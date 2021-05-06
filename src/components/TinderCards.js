@@ -280,7 +280,7 @@ const TinderCards = () => {
 const styles = StyleSheet.create({
   // add container styles and place the cards to center
   container: {
-    flex: 0.9,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: screenWidth - 10,
-    height: 0.86 * screenHeight,
+    height: 0.88 * screenHeight,
     backgroundColor: '#f4f4f4',
     position: 'absolute',
     borderRadius: 10,
